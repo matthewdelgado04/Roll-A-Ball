@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5.0f;
     private Rigidbody rb;
     private int pickupCount;
+    private Timer timer;
 
 
 
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
         print("Pickup Count: " + pickupCount);
         //run the check pickups function 
         CheckPickups();
+        //get the timer object 
+        timer = FindObjectOfType<Timer>();
+        timer.StartTimer();
 
         rb = GetComponent<Rigidbody>();
 
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movment = new Vector3(moveHorizontal, 0, moveVertical);
         rb.AddForce(movment * speed);
+        Display Timer;
 
     }
 
@@ -56,8 +61,8 @@ public class PlayerController : MonoBehaviour
         print("Pickup Count " + pickupCount);
 
         if (pickupCount == 0)
-        {
-            print("Wee Wooo you did it :P");
+        {   timer.StopTimer();
+            print("Wee Wooo you did it :P. Your time was:"+timer.currentTime);
         }
     }
 }
